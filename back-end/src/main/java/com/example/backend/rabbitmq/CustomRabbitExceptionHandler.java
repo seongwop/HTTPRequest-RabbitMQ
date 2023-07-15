@@ -19,16 +19,14 @@ public class CustomRabbitExceptionHandler implements RabbitListenerErrorHandler 
     @Override
     public Object handleError(Message amqpMessage, org.springframework.messaging.Message<?> message, ListenerExecutionFailedException exception) throws Exception {
 
+        log.error("error occurred : {}",  exception.getMessage());
 
-        log.error("error occurred while processing message");
-        log.error("error message : {}",  exception.getMessage());
-
-        Long userId = amqpMessage.getMessageProperties().getHeader("userId");
+        String userId = amqpMessage.getMessageProperties().getHeader("userId");
 
         SseEmitter.SseEventBuilder sseEvent = SseEmitter.event()
                 .data("Room is over occupied");
 
-        sseEmitters.send(userId.toString(), sseEvent);
+        sseEmitters.send(userId, sseEvent);
 
         return null;
     }

@@ -28,7 +28,7 @@ public class EnterRoomService {
         );
         room.setUserCount(room.getUserCount() + 1);
 
-        if (room.getUserCount() > 10) throw new RuntimeException("Room is over occupied");
+        if (room.getUserCount() > 10) throw new IllegalArgumentException("Room is over occupied");
     }
 
     public void enterQueue(EnterRoomDto enterRoomDto) {
@@ -39,6 +39,7 @@ public class EnterRoomService {
         log.info("message sent by : {}", enterRoomDto.getUuid());
     }
 
+    @Transactional
     @RabbitListener(queues = "enter_queue", errorHandler = "customRabbitExceptionHandler")
     public void consumer(EnterRoomDto enterRoomDto, Message message) {
         message.getMessageProperties().setHeader("userId", enterRoomDto.getUserId());
@@ -46,9 +47,10 @@ public class EnterRoomService {
         Room room = roomRepository.findByRoomId(enterRoomDto.getRoomId()).orElseThrow(
                 () -> new IllegalArgumentException("No room found")
         );
+
         room.setUserCount(room.getUserCount() + 1);
 
-        if (room.getUserCount() > 10) throw new RuntimeException("Room is over occupied");
+        if (room.getUserCount() > 10) throw new IllegalArgumentException("Room is over occupied");
 
         SseEmitter.SseEventBuilder sseEvent = SseEmitter.event()
                 .data(enterRoomDto.getUuid());

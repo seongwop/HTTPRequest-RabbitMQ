@@ -23,7 +23,9 @@ public class SseController {
     @CrossOrigin
     @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public ResponseEntity<SseEmitter> connect() {
+        // set timeout to infinite
         SseEmitter emitter = new SseEmitter(-1L);
+
         EnterRoomDto enterRoomDto = new EnterRoomDto();
         enterRoomDto.setUserId("1");
 
@@ -31,25 +33,4 @@ public class SseController {
 
         return ResponseEntity.ok(emitter);
     }
-
-//    @CrossOrigin
-//    @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-//    public SseEmitter connect() {
-//        SseEmitter emitter = new SseEmitter();
-//        ExecutorService sseMvcExecutor = Executors.newSingleThreadExecutor();
-//        sseMvcExecutor.execute(() -> {
-//            try {
-//                for (int i = 0; i < 20; i++) {
-//                    SseEmitter.SseEventBuilder event = SseEmitter.event()
-//                            .data(System.currentTimeMillis());
-//                    emitter.send(event);
-//                    Thread.sleep(1000);
-//                }
-//            } catch (Exception ex) {
-//                emitter.completeWithError(ex);
-//            }
-//        });
-//        return emitter;
-//    }
-
 }
