@@ -16,5 +16,5 @@ RabbitMQ 메세지 브로커를 이용한 HTTP 요청 동시성 제어 테스트
 -> 10개 이상의 요청 성공 (동시성 제어 실패)
 
 - Queue에 의한 처리
-  <br>![queue](https://github.com/seongwop/HTTPRequest-RabbitMQ/assets/93995037/f01d5305-80db-4889-be65-8e3943638d8e)<br>
+  <br>![queue (1)](https://github.com/seongwop/HTTPRequest-RabbitMQ/assets/93995037/a6ebcb26-bee0-4581-bc0e-9457884ffd37)<br>
 -> 10개 초과 시 예외 메세지 전송 (동시성 제어 성공)
