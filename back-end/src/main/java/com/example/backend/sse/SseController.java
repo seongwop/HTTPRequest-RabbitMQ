@@ -23,10 +23,11 @@ public class SseController {
     @CrossOrigin
     @GetMapping(value = "/connect", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public ResponseEntity<SseEmitter> connect() {
-        // set timeout to infinite
+        // Set timeout to infinite
         SseEmitter emitter = new SseEmitter(-1L);
 
         EnterRoomDto enterRoomDto = new EnterRoomDto();
+        // Set a temporary ID value for testing
         enterRoomDto.setUserId("1");
 
         sseEmitters.add(enterRoomDto.getUserId(), emitter);

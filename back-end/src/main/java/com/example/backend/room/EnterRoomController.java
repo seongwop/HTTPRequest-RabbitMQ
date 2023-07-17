@@ -13,11 +13,13 @@ public class EnterRoomController {
         this.enterRoomService = enterRoomService;
     }
 
+    // When handling requests in general without queue
     @PostMapping("/enter")
     public void enterRoom(@RequestBody EnterRoomDto enterRoomDto) {
         enterRoomService.enterRoom(enterRoomDto);
     }
 
+    // When handling requests with queue
     @PostMapping("/enter-queue")
     public void enterQueue(@RequestBody EnterRoomDto enterRoomDto) {
         enterRoomService.enterQueue(enterRoomDto);

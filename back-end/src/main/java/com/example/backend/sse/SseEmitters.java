@@ -39,7 +39,6 @@ public class SseEmitters {
         if (emitter != null) {
             try {
                 emitter.send(event);
-                log.info("event sent to emiiter {}", emitter);
             } catch (IOException e) {
                 log.error("Failed to send SSE event to emitter {}", emitter, e);
             }

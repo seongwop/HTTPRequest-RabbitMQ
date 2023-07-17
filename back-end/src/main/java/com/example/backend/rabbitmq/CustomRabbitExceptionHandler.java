@@ -16,6 +16,7 @@ public class CustomRabbitExceptionHandler implements RabbitListenerErrorHandler 
 
     private final SseEmitters sseEmitters;
 
+    // To catch the exception occurred from consumer for sending the message to user via SSE
     @Override
     public Object handleError(Message amqpMessage, org.springframework.messaging.Message<?> message, ListenerExecutionFailedException exception) throws Exception {
 
