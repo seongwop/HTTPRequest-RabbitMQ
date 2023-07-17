@@ -13,7 +13,7 @@ function Sse() {
   useEffect(() => {
 
     if (!listening) {
-      eventSource = new EventSource("http://localhost:8080/connect"); // subscribe
+      eventSource = new EventSource("http://localhost:8080/connect");
 
       //msetEventSource(new EventSource("http://localhost:8088/connect"));
 
@@ -26,6 +26,8 @@ function Sse() {
       //   setData(result)
       // });
 
+      console.log("eventSource", eventSource);
+
       // when connected
       eventSource.onopen = event => {
         console.log("connection opened");
@@ -33,6 +35,7 @@ function Sse() {
 
       // when receive message
       eventSource.onmessage = event => {
+        console.log("result", event.data);
         setData(old => [...old, event.data]);
         setValue(event.data);
       };
@@ -62,8 +65,8 @@ function Sse() {
   return (
     <div className="App">
       <header className="App-header">
-        <div style={{ backgroundColor: "black" }}>
-          Received UUID
+        <div style={{ backgroundColor: "white", color: "black" }}>
+          Received Requests (UUID)
           {data.map((d, index) => (
             <span key={index}>
             <br />
@@ -72,7 +75,6 @@ function Sse() {
           ))}
         </div>
       </header>
-
     </div>
   );
 }
