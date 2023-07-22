@@ -1,6 +1,6 @@
-# HTTPRequest-RabbitMQ
+# http-request-rabbitmq
 
-RabbitMQ 메세지 브로커를 이용한 HTTP 요청 동시성 제어 테스트
+외부 메세지 브로커 RabbitMQ를 이용한 HTTP 요청 동시성 제어 테스트
 
 최대 인원이 N명인 방에 동시 접근 시 N개 이상의 HTTP 요청이 수락되는 동시성 문제 발생
 
