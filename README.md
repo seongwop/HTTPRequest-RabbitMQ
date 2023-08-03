@@ -20,3 +20,4 @@
 - Queue에 의한 요청 처리
   <br><br>![queue (1)](https://github.com/seongwop/HTTPRequest-RabbitMQ/assets/93995037/a6ebcb26-bee0-4581-bc0e-9457884ffd37)<br><br>
 -> 10개 초과 시 예외 메세지 전송 (동시성 제어 성공)
+  
